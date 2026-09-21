@@ -95,7 +95,7 @@ function renderGallery(lang) {
       const caption = lang === "zh" ? g.zh : g.en;
       return `
         <div class="gallery-item ${spanClass}" data-reveal-item>
-          <img src="/img/${g.file}.jpg" alt="${caption}" loading="lazy" />
+          <img src="${import.meta.env.BASE_URL}img/${g.file}.jpg" alt="${caption}" loading="lazy" />
           <span class="gallery-item__caption">${caption}</span>
         </div>`;
     })
