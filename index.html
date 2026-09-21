@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="zh-CN" data-lang="zh">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="description" content="Yunshu Li · Content creator & project lead — bilingual portfolio" />
+    <title>李云舒 · 作品集 / Yunshu Li · Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Inter:wght@400;500;600;700&family=Noto+Serif+SC:wght@500;600;700&family=Noto+Sans+SC:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body data-lang="zh">
+    <div class="grain" aria-hidden="true"></div>
+    <div class="cursor-glow" aria-hidden="true"></div>
+
+    <header class="nav" data-reveal>
+      <a class="nav__brand" href="#hero" data-i18n="hero.nameZh">李云舒</a>
+      <nav class="nav__links">
+        <a href="#about" data-i18n="nav.about">关于</a>
+        <a href="#content" data-i18n="nav.content">内容创作</a>
+        <a href="#project" data-i18n="nav.project">主导项目</a>
+      </nav>
+      <button class="lang-toggle" id="lang-toggle" type="button" aria-label="Switch language">
+        <span data-i18n="nav.langToggle">EN</span>
+      </button>
+      <button class="nav__burger" id="nav-burger" type="button" aria-label="Menu">
+        <span></span><span></span>
+      </button>
+    </header>
+
+    <main>
+      <section class="hero" id="hero">
+        <div class="hero__blobs" aria-hidden="true">
+          <span class="blob blob--a"></span>
+          <span class="blob blob--b"></span>
+          <span class="blob blob--c"></span>
+        </div>
+        <div class="hero__grid">
+          <p class="hero__eyebrow" data-reveal data-i18n="hero.eyebrow">作品集 · 2026</p>
+          <h1 class="hero__name" data-reveal>
+            <span class="hero__name-zh" data-i18n="hero.nameZh">李云舒</span>
+            <span class="hero__name-en" data-i18n="hero.nameEn">Yunshu Li</span>
+          </h1>
+          <p class="hero__role" data-reveal data-i18n="hero.role">内容创作者 · 项目负责人</p>
+          <p class="hero__tagline" data-reveal data-i18n="hero.tagline">
+            在内容与土地之间，讲一个说得清的故事。
+          </p>
+        </div>
+        <div class="hero__scroll" data-reveal>
+          <span data-i18n="hero.scroll">向下滚动</span>
+          <i></i>
+        </div>
+      </section>
+
+      <section class="about" id="about">
+        <div class="section-head" data-reveal>
+          <p class="eyebrow" data-i18n="about.label">关于我</p>
+          <h2 data-i18n="about.heading">两种叙事视角，一种做事方法</h2>
+        </div>
+        <div class="about__grid">
+          <p class="about__body" data-reveal data-i18n="about.body">…</p>
+          <ul class="about__stats" id="about-stats" data-reveal></ul>
+        </div>
+      </section>
+
+      <section class="social" id="content">
+        <div class="section-head" data-reveal>
+          <p class="eyebrow" data-i18n="social.label">内容创作</p>
+          <h2 data-i18n="social.heading">两个账号，两种声音</h2>
+          <p class="section-intro" data-i18n="social.intro">…</p>
+        </div>
+        <div class="social__cards" id="social-cards"></div>
+      </section>
+
+      <section class="project" id="project">
+        <div class="section-head" data-reveal>
+          <p class="eyebrow" data-i18n="project.label">主导项目</p>
+          <h2 data-i18n="project.heading">四川广元农业企业调研与宣传项目</h2>
+        </div>
+
+        <div class="project__meta" data-reveal>
+          <div class="project__meta-item">
+            <span class="project__meta-key" data-i18n="project.role">社会实践项目负责人</span>
+          </div>
+          <div class="project__meta-item">
+            <span class="project__meta-key" data-i18n="project.place">四川 · 广元</span>
+          </div>
+          <div class="project__meta-item">
+            <span class="project__meta-key" data-i18n="project.org">川珍实业有限公司</span>
+          </div>
+        </div>
+
+        <p class="project__blurb" data-reveal data-i18n="project.companyBlurb">…</p>
+
+        <ul class="project__bullets" id="project-bullets" data-reveal></ul>
+
+        <div class="project__video" data-reveal>
+          <p class="project__video-caption" data-i18n="project.videoCaption">调研成果宣传片</p>
+          <div class="video-frame" id="video-frame">
+            <video
+              id="promo-video"
+              playsinline
+              preload="none"
+              poster="/img/guangyuan-park-building.jpg"
+              controls
+            >
+              <source src="/video/guangyuan-promo.mp4" type="video/mp4" />
+            </video>
+            <button class="video-play" id="video-play" type="button">
+              <span class="video-play__icon"></span>
+              <span data-i18n="project.videoPlay">播放宣传片</span>
+            </button>
+          </div>
+        </div>
+
+        <h3 class="project__gallery-heading" data-reveal data-i18n="project.galleryHeading">实地影像</h3>
+        <div class="project__gallery" id="project-gallery"></div>
+      </section>
+    </main>
+
+    <footer class="footer" data-reveal>
+      <h2 data-i18n="footer.heading">感谢浏览</h2>
+      <p data-i18n="footer.sub">这份作品集仍在生长，欢迎随时回来看看。</p>
+      <a href="#hero" class="footer__top" data-i18n="footer.backToTop">回到顶部</a>
+      <p class="footer__copy">© 2026 李云舒 · Yunshu Li</p>
+    </footer>
+
+    <script type="module" src="/src/js/main.js"></script>
+  </body>
+</html>
