@@ -163,4 +163,4 @@ export const content = {
 
 export const PROOF_FAN_COUNT = 4;
 export const PROOF_FIC_COUNT = 14;
-export const CONTACT_EMAILS = ["liyunshu2@gmail.com", "2854521822@qq.com"];
+export const CONTACT_EMAILS = ["liyunshu22@gmail.com", "2854521822@qq.com"];
