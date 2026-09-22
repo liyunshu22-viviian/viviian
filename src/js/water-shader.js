@@ -17,10 +17,8 @@ uniform vec2 u_mouse;
 uniform float u_speed;
 uniform float u_waves;
 uniform float u_caustic;
-
-const vec3 colBase  = vec3(0.976, 0.968, 0.953);
-const vec3 colMid   = vec3(0.831, 0.906, 0.894);
-const vec3 colDeep  = vec3(0.616, 0.769, 0.780);
+uniform float u_highlights;
+uniform vec3 u_colorBack;
 
 float causticField(vec2 p, float t) {
   float v = 0.0;
@@ -49,12 +47,25 @@ void main() {
   c = c * 0.22 + 0.5;
   c = pow(clamp(c, 0.0, 1.0), 2.3 - u_caustic * 5.0);
 
+  vec3 colDeep = u_colorBack;
+  vec3 colMid  = mix(colDeep, vec3(1.0), 0.45);
+  vec3 colBase = mix(colDeep, vec3(1.0), 0.85);
+
   vec3 base = mix(colBase, colMid, uv.y * 0.55 + 0.15);
   vec3 color = mix(base, colDeep, c * (0.30 + mouseInfluence));
+
+  float hi = smoothstep(0.72, 1.0, c);
+  color = mix(color, vec3(1.0), hi * u_highlights);
 
   gl_FragColor = vec4(color, 1.0);
 }
 `;
+
+function hexToRgb01(hex) {
+  const m = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex || "");
+  if (!m) return [0.4, 0.73, 0.7];
+  return [parseInt(m[1], 16) / 255, parseInt(m[2], 16) / 255, parseInt(m[3], 16) / 255];
+}
 
 function compileShader(gl, type, source) {
   const shader = gl.createShader(type);
@@ -70,7 +81,13 @@ function compileShader(gl, type, source) {
 
 export function initWaterBackground(canvas, opts = {}) {
   if (!canvas) return;
-  const { speed = 1, waves = 0.3, caustic = 0.08 } = opts;
+  const {
+    speed = 1,
+    waves = 0.3,
+    caustic = 0.08,
+    highlights = 0.4,
+    colorBack = "#66b7b2",
+  } = opts;
 
   const gl = canvas.getContext("webgl") || canvas.getContext("experimental-webgl");
   if (!gl) {
@@ -116,10 +133,14 @@ export function initWaterBackground(canvas, opts = {}) {
   const u_speed = gl.getUniformLocation(program, "u_speed");
   const u_waves = gl.getUniformLocation(program, "u_waves");
   const u_caustic = gl.getUniformLocation(program, "u_caustic");
+  const u_highlights = gl.getUniformLocation(program, "u_highlights");
+  const u_colorBack = gl.getUniformLocation(program, "u_colorBack");
 
   gl.uniform1f(u_speed, speed);
   gl.uniform1f(u_waves, waves);
   gl.uniform1f(u_caustic, caustic);
+  gl.uniform1f(u_highlights, highlights);
+  gl.uniform3fv(u_colorBack, hexToRgb01(colorBack));
 
   const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
   let w = 0;

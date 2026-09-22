@@ -43,7 +43,7 @@
 }
 
 html {
-  background: #f7f4ee;
+  background: #eef6f5;
   scroll-behavior: smooth;
 }
 
@@ -118,7 +118,7 @@ button {
 }
 
 .no-webgl html {
-  background: linear-gradient(180deg, #f9f6f3 0%, #d9ece9 60%, #a9d0cd 100%);
+  background: linear-gradient(180deg, #eef6f5 0%, #a9d6d1 60%, #66b7b2 100%);
 }
 
 .eyebrow {

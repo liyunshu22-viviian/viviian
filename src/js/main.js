@@ -34,7 +34,13 @@ document.querySelectorAll(".nav__links a").forEach((a) =>
 );
 
 /* ---------------- site-wide water shader background ---------------- */
-initWaterBackground(document.getElementById("water-bg"));
+initWaterBackground(document.getElementById("water-bg"), {
+  speed: 1,
+  waves: 0.3,
+  caustic: 0.08,
+  highlights: 0.4,
+  colorBack: "#66b7b2",
+});
 
 /* ---------------- hero entrance ---------------- */
 gsap.timeline({ defaults: { ease: "power3.out", duration: 1 } })
