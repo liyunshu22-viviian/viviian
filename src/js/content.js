@@ -13,6 +13,7 @@ export const content = {
   nav: {
     about: { zh: "关于", en: "About" },
     content: { zh: "内容创作", en: "Content" },
+    novels: { zh: "长篇创作", en: "Fiction" },
     project: { zh: "主导项目", en: "Project" },
     langToggle: { zh: "EN", en: "中" },
   },
@@ -102,6 +103,45 @@ export const content = {
     fanLabel: { zh: "粉丝社群向 · 后台数据", en: "Fan Community — Dashboard" },
     ficLabel: { zh: "同人创作 · 后台数据", en: "Fan Fiction — Dashboard" },
   },
+
+  novels: {
+    label: { zh: "长篇创作", en: "Long-Form Fiction" },
+    heading: { zh: "两部长篇，两种世界", en: "Two Novels, Two Worlds" },
+    intro: {
+      zh: "业余时间写的两部长篇同人小说，滑到标题查看，点击进入完整阅读页。",
+      en: "Two long-form fiction projects written in my spare time — hover a title, click through to read the full piece.",
+    },
+    hint: { zh: "点击阅读全文", en: "Click to read" },
+  },
+
+  works: [
+    {
+      slug: "babel-tower",
+      title: { zh: "巴别塔", en: "Babel Tower" },
+      tag: { zh: "架空 · 战争", en: "War Fantasy" },
+      status: { zh: "连载中", en: "Ongoing" },
+      logline: {
+        zh: "一场瘟疫，一场加冕礼，把士兵与巫女王后困在同一场回不去的战争里。",
+        en: "A plague, a coronation, and a war neither of them can walk back from.",
+      },
+      wordcount: "24,000+",
+      accent: "#b5384a",
+      icon: "tower",
+    },
+    {
+      slug: "voyage-log",
+      title: { zh: "远航日志", en: "Voyage Log" },
+      tag: { zh: "科幻 · 长篇", en: "Sci-Fi" },
+      status: { zh: "已完结", en: "Complete" },
+      logline: {
+        zh: "灵感来自《三体》的星际长篇，写一封横跨休眠舱与光年的告白信。",
+        en: "A space epic inspired by The Three-Body Problem — a love letter spanning cryosleep and lightyears.",
+      },
+      wordcount: "16,000+",
+      accent: "#2f7d78",
+      icon: "pod",
+    },
+  ],
 
   project: {
     label: { zh: "主导项目", en: "Featured Project" },
