@@ -98,11 +98,7 @@ export const content = {
 
   proof: {
     label: { zh: "后台实录", en: "Behind the Numbers" },
-    heading: { zh: "每一个数字，都有截图为证", en: "Every number, screenshotted" },
-    intro: {
-      zh: "上面两组数据都来自小红书创作者后台，随手放一些原始截图，细节都在这里了。",
-      en: "The stats above come straight from the Xiaohongshu creator dashboard — here are the raw screenshots behind them.",
-    },
+    heading: { zh: "每一个爆帖，都有数据说话", en: "Every viral post, backed by data" },
     fanLabel: { zh: "粉丝社群向 · 后台数据", en: "Fan Community — Dashboard" },
     ficLabel: { zh: "同人创作 · 后台数据", en: "Fan Fiction — Dashboard" },
   },
@@ -161,6 +157,6 @@ export const content = {
   },
 };
 
-export const PROOF_FAN_COUNT = 4;
-export const PROOF_FIC_COUNT = 14;
+export const PROOF_FAN_COUNT = 3;
+export const PROOF_FIC_COUNT = 10;
 export const CONTACT_EMAILS = ["liyunshu22@gmail.com", "2854521822@qq.com"];
