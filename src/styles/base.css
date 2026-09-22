@@ -11,11 +11,18 @@
   --line: #dfd9cc;
   --line-strong: #c9c1af;
 
-  /* warm low-saturation accent (clay) */
-  --accent: #b5673f;
-  --accent-dim: #c98a63;
-  --accent-tint: #ecd9c9;
-  --accent-ink: #7a4326;
+  /* low-saturation teal accent, tuned to sit on the water shader */
+  --accent: #2f7d78;
+  --accent-dim: #6fa9a3;
+  --accent-tint: #d9ece9;
+  --accent-ink: #1f5b57;
+  --icon-border-on-dark: rgba(178, 224, 219, 0.9);
+
+  /* frosted-glass surfaces over the animated background */
+  --glass: rgba(255, 253, 249, 0.58);
+  --glass-strong: rgba(255, 253, 249, 0.78);
+  --glass-border: rgba(255, 255, 255, 0.55);
+  --glass-blur: blur(18px) saturate(1.15);
 
   --shadow-soft: 0 30px 60px -30px rgba(22, 21, 15, 0.25);
   --shadow-card: 0 14px 34px -18px rgba(22, 21, 15, 0.28);
@@ -36,13 +43,13 @@
 }
 
 html {
-  background: var(--paper);
+  background: #f7f4ee;
   scroll-behavior: smooth;
 }
 
 body {
   margin: 0;
-  background: var(--paper);
+  background: transparent;
   color: var(--ink);
   font-family: var(--font-body);
   font-size: 16px;
@@ -101,21 +108,17 @@ button {
   background-size: 220px 220px;
 }
 
-.cursor-glow {
+#water-bg {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 480px;
-  height: 480px;
-  margin-left: -240px;
-  margin-top: -240px;
-  border-radius: 50%;
-  pointer-events: none;
-  z-index: 1;
-  background: radial-gradient(circle, rgba(181, 103, 63, 0.14), transparent 70%);
-  opacity: 0;
-  transition: opacity 0.4s ease;
-  will-change: transform;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+  display: block;
+}
+
+.no-webgl html {
+  background: linear-gradient(180deg, #f9f6f3 0%, #d9ece9 60%, #a9d0cd 100%);
 }
 
 .eyebrow {

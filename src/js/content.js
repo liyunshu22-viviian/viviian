@@ -22,20 +22,12 @@ export const content = {
     nameZh: { zh: "李云舒", en: "Yunshu Li" },
     nameEn: { zh: "Yunshu Li", en: "李云舒" },
     role: { zh: "内容创作者 · 项目负责人", en: "Content Creator · Project Lead" },
-    tagline: {
-      zh: "在内容与土地之间，讲一个说得清的故事。",
-      en: "Between content and community — stories that land.",
-    },
     scroll: { zh: "向下滚动", en: "Scroll" },
   },
 
   about: {
     label: { zh: "关于我", en: "About" },
     heading: { zh: "两种叙事视角，一种做事方法", en: "Two lenses, one way of working" },
-    body: {
-      zh: "我同时运营两个持续更新的小红书账号——一个扎根 K-pop 饭拍与海外内容本地化的粉丝社区，一个专注 BTS 向连载同人创作，服务着两群完全不同却同样忠诚的读者。校园之外，我也曾带队深入四川广元的山地企业，把一线调研转写成一支可以直接投入传播的宣传片。无论是镜头前的叙事，还是田野里的调研，我关心的是同一件事：如何把复杂的信息，讲成别人愿意看完的故事。",
-      en: "I run two actively updated Xiaohongshu accounts — one built around K-pop fancams and overseas content localization for a fan community, the other a serialized BTS-inspired fan-fiction project — each speaking to a different but equally loyal readership. Outside of that, I led a student team into the mountains of Guangyuan, Sichuan, turning a stretch of on-site research into a promotional film ready for real distribution. Whether in front of a camera or out in the field, I keep coming back to the same question: how do you turn something complex into a story people actually finish.",
-    },
     stats: [
       {
         value: { zh: "2", en: "2" },
@@ -84,11 +76,11 @@ export const content = {
       badge: { zh: "同人创作", en: "Fan Fiction" },
       title: { zh: "BTS 向连载故事", en: "BTS-Inspired Serial Fiction" },
       desc: {
-        zh: "以《暗恋哥哥被发现了怎么办》《那个巴黎雕塑家》等连载同人故事为主，核心读者是 18–24 岁的年轻女性。",
-        en: "Serialized original fiction inspired by BTS — including the story arcs behind these two running series — read mainly by women aged 18–24.",
+        zh: "长期更新的 BTS 向连载同人故事，核心读者是 18–24 岁的年轻女性。",
+        en: "An ongoing series of BTS-inspired serialized fiction, read mainly by women aged 18–24.",
       },
       stats: [
-        { value: "337", label: { zh: "粉丝数 · 周环比 +19.5%", en: "followers · +19.5% WoW" } },
+        { value: "+19.5%", label: { zh: "粉丝周环比增长率", en: "weekly follower growth rate" } },
         { value: "超 99%", label: { zh: "互动数超同类创作者", en: "engagement beats peer creators" } },
         { value: "90.1%", label: { zh: "活跃粉丝占比", en: "active-follower rate" } },
         { value: "31.7%", label: { zh: "爆款笔记互动率", en: "top post engagement rate" } },
@@ -102,6 +94,17 @@ export const content = {
         { label: { zh: "44 岁以上", en: "45+" }, value: 4 },
       ],
     },
+  },
+
+  proof: {
+    label: { zh: "后台实录", en: "Behind the Numbers" },
+    heading: { zh: "每一个数字，都有截图为证", en: "Every number, screenshotted" },
+    intro: {
+      zh: "上面两组数据都来自小红书创作者后台，随手放一些原始截图，细节都在这里了。",
+      en: "The stats above come straight from the Xiaohongshu creator dashboard — here are the raw screenshots behind them.",
+    },
+    fanLabel: { zh: "粉丝社群向 · 后台数据", en: "Fan Community — Dashboard" },
+    ficLabel: { zh: "同人创作 · 后台数据", en: "Fan Fiction — Dashboard" },
   },
 
   project: {
@@ -154,5 +157,10 @@ export const content = {
       en: "This portfolio is still growing — feel free to check back.",
     },
     backToTop: { zh: "回到顶部", en: "Back to top" },
+    mailHint: { zh: "邮箱联系", en: "Email me" },
   },
 };
+
+export const PROOF_FAN_COUNT = 4;
+export const PROOF_FIC_COUNT = 14;
+export const CONTACT_EMAILS = ["liyunshu2@gmail.com", "2854521822@qq.com"];

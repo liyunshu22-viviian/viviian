@@ -1,4 +1,4 @@
-import { content, XHS_FAN_URL, XHS_FIC_URL } from "./content.js";
+import { content, XHS_FAN_URL, XHS_FIC_URL, PROOF_FAN_COUNT, PROOF_FIC_COUNT } from "./content.js";
 import { getLang } from "./i18n.js";
 
 const ARROW_SVG = `<svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 12L12 4M12 4H5M12 4V11" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
@@ -102,10 +102,30 @@ function renderGallery(lang) {
     .join("");
 }
 
+function renderProofGrid(elId, prefix, count) {
+  const el = document.getElementById(elId);
+  if (!el) return;
+  const base = import.meta.env.BASE_URL;
+  el.innerHTML = Array.from({ length: count }, (_, i) => {
+    const n = String(i + 1).padStart(2, "0");
+    const src = `${base}img/proof/${prefix}-${n}.jpg`;
+    return `
+      <div class="proof-item">
+        <img src="${src}" alt="${prefix}-${n}" loading="lazy" />
+      </div>`;
+  }).join("");
+}
+
+function renderProofGallery() {
+  renderProofGrid("proof-fan", "fan", PROOF_FAN_COUNT);
+  renderProofGrid("proof-fic", "fic", PROOF_FIC_COUNT);
+}
+
 export function renderDynamicSections() {
   const lang = getLang();
   renderAboutStats(lang);
   renderSocialCards(lang);
   renderProjectBullets(lang);
   renderGallery(lang);
+  renderProofGallery();
 }

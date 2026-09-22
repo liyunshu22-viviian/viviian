@@ -3,6 +3,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { initLangToggle, onLangChange } from "./i18n.js";
 import { renderDynamicSections } from "./sections.js";
+import { initWaterBackground } from "./water-shader.js";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -12,7 +13,10 @@ initLangToggle();
 onLangChange(() => {
   renderDynamicSections();
   ScrollTrigger.refresh();
-  requestAnimationFrame(animateVisibleBars);
+  requestAnimationFrame(() => {
+    animateVisibleBars();
+    revealCards();
+  });
 });
 
 /* ---------------- mobile nav ---------------- */
@@ -29,54 +33,8 @@ document.querySelectorAll(".nav__links a").forEach((a) =>
   })
 );
 
-/* ---------------- hero: cursor-reactive blobs + glow ---------------- */
-const isFinePointer = window.matchMedia("(pointer: fine)").matches;
-const glow = document.querySelector(".cursor-glow");
-const blobs = gsap.utils.toArray(".blob");
-
-if (isFinePointer && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-  const quickX = gsap.quickTo(glow, "x", { duration: 0.6, ease: "power3.out" });
-  const quickY = gsap.quickTo(glow, "y", { duration: 0.6, ease: "power3.out" });
-
-  const blobSetters = blobs.map((b, i) => ({
-    x: gsap.quickTo(b, "x", { duration: 1.1 + i * 0.25, ease: "power3.out" }),
-    y: gsap.quickTo(b, "y", { duration: 1.1 + i * 0.25, ease: "power3.out" }),
-    strength: 0.06 + i * 0.03,
-  }));
-
-  window.addEventListener("pointermove", (e) => {
-    const { innerWidth: w, innerHeight: h } = window;
-    const relX = e.clientX - w / 2;
-    const relY = e.clientY - h / 2;
-
-    quickX(e.clientX);
-    quickY(e.clientY);
-    gsap.to(glow, { opacity: 1, duration: 0.4, overwrite: "auto" });
-
-    blobSetters.forEach((s) => {
-      s.x(relX * s.strength);
-      s.y(relY * s.strength);
-    });
-  });
-
-  window.addEventListener("pointerleave", () => {
-    gsap.to(glow, { opacity: 0, duration: 0.6 });
-  });
-} else {
-  glow?.remove();
-}
-
-/* subtle idle float even without pointer movement */
-blobs.forEach((b, i) => {
-  gsap.to(b, {
-    y: "+=18",
-    duration: 5 + i,
-    ease: "sine.inOut",
-    yoyo: true,
-    repeat: -1,
-    delay: i * 0.4,
-  });
-});
+/* ---------------- site-wide water shader background ---------------- */
+initWaterBackground(document.getElementById("water-bg"));
 
 /* ---------------- hero entrance ---------------- */
 gsap.timeline({ defaults: { ease: "power3.out", duration: 1 } })
@@ -84,8 +42,7 @@ gsap.timeline({ defaults: { ease: "power3.out", duration: 1 } })
   .to(".hero__eyebrow", { opacity: 1, y: 0 }, 0.15)
   .to(".hero__name", { opacity: 1, y: 0 }, 0.28)
   .to(".hero__role", { opacity: 1, y: 0 }, 0.42)
-  .to(".hero__tagline", { opacity: 1, y: 0 }, 0.52)
-  .to(".hero__scroll", { opacity: 1, y: 0 }, 0.7);
+  .to(".hero__scroll", { opacity: 1, y: 0 }, 0.62);
 
 /* ---------------- scroll reveals ---------------- */
 function setupReveals() {
@@ -124,6 +81,28 @@ function setupReveals() {
   });
 }
 
+function revealCards() {
+  gsap.utils.toArray(".social__cards .card").forEach((el, i) => {
+    gsap.fromTo(
+      el,
+      { opacity: 0, filter: "blur(16px)", y: 22 },
+      {
+        opacity: 1,
+        filter: "blur(0px)",
+        y: 0,
+        duration: 1.1,
+        delay: i * 0.12,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: el,
+          start: "top 88%",
+          toggleActions: "play none none none",
+        },
+      }
+    );
+  });
+}
+
 function animateVisibleBars() {
   document.querySelectorAll(".card__chart").forEach((chart) => {
     const fills = [...chart.querySelectorAll(".bar-row__fill")];
@@ -147,6 +126,7 @@ function animateVisibleBars() {
 
 setupReveals();
 animateVisibleBars();
+revealCards();
 
 /* ---------------- project video ---------------- */
 const videoFrame = document.getElementById("video-frame");
@@ -165,3 +145,11 @@ video?.addEventListener("pause", () => {
 video?.addEventListener("play", () => {
   videoFrame.classList.add("is-playing");
 });
+
+/* ---------------- mail icon (tap-to-toggle for touch devices) ---------------- */
+const mailIcon = document.getElementById("mail-icon");
+mailIcon?.addEventListener("click", (e) => {
+  e.stopPropagation();
+  mailIcon.classList.toggle("is-open");
+});
+document.addEventListener("click", () => mailIcon?.classList.remove("is-open"));

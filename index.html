@@ -14,8 +14,8 @@
     />
   </head>
   <body data-lang="zh">
+    <canvas id="water-bg" aria-hidden="true"></canvas>
     <div class="grain" aria-hidden="true"></div>
-    <div class="cursor-glow" aria-hidden="true"></div>
 
     <header class="nav" data-reveal>
       <a class="nav__brand" href="#hero" data-i18n="hero.nameZh">李云舒</a>
@@ -34,11 +34,6 @@
 
     <main>
       <section class="hero" id="hero">
-        <div class="hero__blobs" aria-hidden="true">
-          <span class="blob blob--a"></span>
-          <span class="blob blob--b"></span>
-          <span class="blob blob--c"></span>
-        </div>
         <div class="hero__grid">
           <p class="hero__eyebrow" data-reveal data-i18n="hero.eyebrow">作品集 · 2026</p>
           <h1 class="hero__name" data-reveal>
@@ -46,9 +41,6 @@
             <span class="hero__name-en" data-i18n="hero.nameEn">Yunshu Li</span>
           </h1>
           <p class="hero__role" data-reveal data-i18n="hero.role">内容创作者 · 项目负责人</p>
-          <p class="hero__tagline" data-reveal data-i18n="hero.tagline">
-            在内容与土地之间，讲一个说得清的故事。
-          </p>
         </div>
         <div class="hero__scroll" data-reveal>
           <span data-i18n="hero.scroll">向下滚动</span>
@@ -61,10 +53,7 @@
           <p class="eyebrow" data-i18n="about.label">关于我</p>
           <h2 data-i18n="about.heading">两种叙事视角，一种做事方法</h2>
         </div>
-        <div class="about__grid">
-          <p class="about__body" data-reveal data-i18n="about.body">…</p>
-          <ul class="about__stats" id="about-stats" data-reveal></ul>
-        </div>
+        <ul class="about__stats" id="about-stats" data-reveal></ul>
       </section>
 
       <section class="social" id="content">
@@ -74,6 +63,22 @@
           <p class="section-intro" data-i18n="social.intro">…</p>
         </div>
         <div class="social__cards" id="social-cards"></div>
+      </section>
+
+      <section class="proof" id="proof">
+        <div class="section-head" data-reveal>
+          <p class="eyebrow" data-i18n="proof.label">后台实录</p>
+          <h2 data-i18n="proof.heading">每一个数字，都有截图为证</h2>
+          <p class="section-intro" data-i18n="proof.intro">…</p>
+        </div>
+        <div class="proof__group">
+          <p class="proof__group-label" data-i18n="proof.fanLabel">粉丝社群向 · 后台数据</p>
+          <div class="proof__grid" id="proof-fan"></div>
+        </div>
+        <div class="proof__group">
+          <p class="proof__group-label" data-i18n="proof.ficLabel">同人创作 · 后台数据</p>
+          <div class="proof__grid" id="proof-fic"></div>
+        </div>
       </section>
 
       <section class="project" id="project">
@@ -126,6 +131,19 @@
       <h2 data-i18n="footer.heading">感谢浏览</h2>
       <p data-i18n="footer.sub">这份作品集仍在生长，欢迎随时回来看看。</p>
       <a href="#hero" class="footer__top" data-i18n="footer.backToTop">回到顶部</a>
+
+      <div class="mail-icon" id="mail-icon" tabindex="0" role="button" aria-label="Show email addresses">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="2.5" y="5" width="19" height="14" rx="2.5" stroke="currentColor" stroke-width="1.4" />
+          <path d="M3.5 6.5L12 13L20.5 6.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+        <div class="mail-icon__panel" id="mail-panel">
+          <span class="mail-icon__hint" data-i18n="footer.mailHint">邮箱联系</span>
+          <a href="mailto:liyunshu2@gmail.com">liyunshu2@gmail.com</a>
+          <a href="mailto:2854521822@qq.com">2854521822@qq.com</a>
+        </div>
+      </div>
+
       <p class="footer__copy">© 2026 李云舒 · Yunshu Li</p>
     </footer>
 
