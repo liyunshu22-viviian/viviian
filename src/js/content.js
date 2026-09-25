@@ -186,6 +186,21 @@ export const content = {
     { file: "guangyuan-honors-wall", zh: "企业荣誉墙", en: "Company honors wall", span: "" },
   ],
 
+  diorama: {
+    aria: { zh: "雨夜便利店街角 · 可拖拽旋转的三维微缩场景", en: "Rainy-night convenience store corner — a draggable 3D diorama" },
+    signSub: { zh: "作品集 · 2026", en: "Portfolio · 2026" },
+    content: { zh: "内容创作", en: "Content Creation" },
+    contentSub: { zh: "小红书双账号运营", en: "Two Xiaohongshu accounts" },
+    novels: { zh: "长篇创作", en: "Long-Form Fiction" },
+    novelsSub: { zh: "《巴别塔》《远航日志》", en: "Babel Tower · Voyage Log" },
+    project: { zh: "主导项目", en: "Featured Project" },
+    projectSub: { zh: "广元农业企业调研", en: "Guangyuan agri-business field study" },
+    hint: { zh: "点击进入", en: "Click to enter" },
+    hintTouch: { zh: "再点一次进入", en: "Tap again to enter" },
+    drag: { zh: "拖拽旋转 · 滚轮缩放 · 向下滚动浏览", en: "Drag to orbit · Scroll to zoom · Keep scrolling to browse" },
+    dragTouch: { zh: "拖动旋转 · 点击招牌与门窗探索", en: "Drag to orbit · Tap the signs to explore" },
+  },
+
   footer: {
     heading: { zh: "感谢浏览", en: "Thanks for stopping by" },
     sub: {

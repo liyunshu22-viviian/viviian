@@ -1,7 +1,7 @@
 import "../styles/main.css";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { initLangToggle, onLangChange } from "./i18n.js";
+import { getLang, initLangToggle, onLangChange, t } from "./i18n.js";
 import { renderDynamicSections } from "./sections.js";
 import { initWaterBackground } from "./water-shader.js";
 
@@ -42,9 +42,72 @@ initWaterBackground(document.getElementById("water-bg"), {
   colorBack: "#66b7b2",
 });
 
+/* ---------------- 3D diorama intro ---------------- */
+const dioramaEl = document.getElementById("top");
+const navEl = document.querySelector(".nav");
+const coarsePointer = window.matchMedia("(pointer: coarse)").matches;
+const DIORAMA_TARGETS = { sign: "hero", door: "content", vending: "novels", poster: "project" };
+let diorama = null;
+
+function dioramaLabel(key) {
+  const lang = getLang();
+  const hint = t(coarsePointer ? "diorama.hintTouch" : "diorama.hint", lang);
+  switch (key) {
+    case "sign":
+      return {
+        main: lang === "zh" ? "李云舒" : "Yunshu Li",
+        sub: (lang === "zh" ? "Yunshu Li · " : "李云舒 · ") + t("diorama.signSub", lang),
+        hint,
+      };
+    case "door":
+      return { main: t("diorama.content", lang), sub: t("diorama.contentSub", lang), hint };
+    case "vending":
+      return { main: t("diorama.novels", lang), sub: t("diorama.novelsSub", lang), hint };
+    default:
+      return { main: t("diorama.project", lang), sub: t("diorama.projectSub", lang), hint };
+  }
+}
+
+function setDioramaTip() {
+  const tip = dioramaEl?.querySelector("[data-diorama-tip]");
+  if (tip) tip.textContent = t(coarsePointer ? "diorama.dragTouch" : "diorama.drag", getLang());
+}
+
+function updateNavVisibility() {
+  if (!dioramaEl || !navEl) return;
+  navEl.classList.toggle("is-hidden", window.scrollY < dioramaEl.offsetHeight - 90);
+}
+
+if (dioramaEl) {
+  setDioramaTip();
+  updateNavVisibility();
+  window.addEventListener("scroll", updateNavVisibility, { passive: true });
+  onLangChange(() => {
+    setDioramaTip();
+    diorama?.refreshLabels();
+  });
+  import("./diorama/diorama.js")
+    .then(({ initDiorama }) => {
+      diorama = initDiorama(dioramaEl, {
+        getLabel: dioramaLabel,
+        onNavigate: (key) => document.getElementById(DIORAMA_TARGETS[key])?.scrollIntoView({ behavior: "smooth" }),
+      });
+      if (diorama) dioramaEl.classList.add("is-ready");
+      else throw new Error("WebGL unavailable");
+    })
+    .catch(() => {
+      dioramaEl.remove();
+      navEl?.classList.remove("is-hidden");
+      window.removeEventListener("scroll", updateNavVisibility);
+      ScrollTrigger.refresh();
+    });
+}
+
 /* ---------------- hero entrance ---------------- */
-gsap.timeline({ defaults: { ease: "power3.out", duration: 1 } })
-  .to(".nav", { opacity: 1, y: 0, duration: 0.8 }, 0)
+gsap.timeline({
+  defaults: { ease: "power3.out", duration: 1 },
+  scrollTrigger: dioramaEl ? { trigger: ".hero", start: "top 75%" } : undefined,
+})
   .to(".hero__eyebrow", { opacity: 1, y: 0 }, 0.15)
   .to(".hero__name", { opacity: 1, y: 0 }, 0.28)
   .to(".hero__role", { opacity: 1, y: 0 }, 0.42)

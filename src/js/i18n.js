@@ -36,6 +36,11 @@ export function applyLang(lang) {
     if (value) el.textContent = value;
   });
 
+  document.querySelectorAll("[data-i18n-aria]").forEach((el) => {
+    const value = t(el.getAttribute("data-i18n-aria"), lang);
+    if (value) el.setAttribute("aria-label", value);
+  });
+
   document.title = t("meta.title", lang);
 
   listeners.forEach((fn) => fn(lang));
